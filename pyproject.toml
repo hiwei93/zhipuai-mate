@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "zhipuai-mate"
+version = "0.1.0"
+description = ""
+authors = ["zhangwei <wei1157@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain = "^0.1.16"
+zhipuai = "^2.0.1"
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
