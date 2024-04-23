@@ -3,14 +3,16 @@ from typing import List, Optional, Any, Dict, Mapping, Union
 import zhipuai
 from langchain_core.callbacks import CallbackManagerForLLMRun
 from langchain_core.language_models import BaseChatModel
-from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
+from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage
 from langchain_core.outputs import ChatResult, ChatGeneration
 from langchain_core.pydantic_v1 import Field, root_validator, BaseModel
 
 
 def convert_message_to_dict(message: BaseMessage) -> dict:
     message_dict: Dict[str, Any]
-    if isinstance(message, HumanMessage):
+    if isinstance(message, SystemMessage):
+        message_dict = {"role": "system", "content": message.content}
+    elif isinstance(message, HumanMessage):
         message_dict = {"role": "user", "content": message.content}
     elif isinstance(message, AIMessage):
         message_dict = {"role": "assistant", "content": message.content}
